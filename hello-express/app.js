@@ -25,4 +25,24 @@ app.get("/guest/:id?",(req, res)=>{
 
 app.use("/user", require("./user"));
 
+app.get("/pug",(req, res)=>{
+  app.set("view engine", "pug");
+  res.status(200).render("index.pug",{ title: "Webアプリケーション開発"});
+});
+
+app.get("/jade",(req, res)=>{
+  app.set("view engine", "jade");
+  res.status(200).render("index.jade",{ title: "Webアプリケーション開発"});
+});
+
+app.get("/ejs",(req, res)=>{
+  app.set("view engine", "ejs");
+  res.status(200).render("index.ejs",{ title: "Webアプリケーション開発"});
+});
+
+app.get("/hjs",(req, res)=>{
+  app.set("view engine", "hjs");
+  res.status(200).render("index.hjs",{ title: "Webアプリケーション開発"});
+});
+
 app.listen(3000);
