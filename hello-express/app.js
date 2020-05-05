@@ -51,4 +51,6 @@ app.get("/ejs-sample",(req, res)=>{
   res.status(200).render("item.ejs",　data);
 });
 
+app.use("/public", express.static( __dirname + "/public"));
+
 app.listen(3000);
