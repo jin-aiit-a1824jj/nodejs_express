@@ -36,4 +36,11 @@ app.get("/queryinfo", (req, res)=>{
   //console.log(req);
 });
 
+app.get("/headerinfo", (req, res)=>{
+  console.log(req.get("user-agent"));
+  res.set("Cache-Control", "no-cache");
+  res.set("Pragma", "no-chche");
+  res.render("./index.ejs");
+});
+
 app.listen(3000);
