@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
 app.all("/", (req, res) => {
@@ -17,4 +18,17 @@ app.all("/", (req, res) => {
   res.send("OK");
 
 });
+
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
+app.get("/postdata", (req, res)=>{
+  res.render("./index.ejs")
+});
+
+app.post("/postdata", (req, res)=>{
+  res.send("OK");
+});
+
 app.listen(3000);
