@@ -1,5 +1,16 @@
 npm init
-set NODE_ENV=DEBUG && node ./app.js
+export NODE_ENV=development && gulp && node ./app.js
+export NODE_ENV=production && gulp && node ./app.js
 
 npm install eslint --save-dev
 ./node_modules/.bin/eslint --init
+
+npm install gulp require-dir del gulp-sass gulp-uglify --save-dev
+npm install jquery popper.js bootstrap font-awesome --save
+npm run gulp clean-log
+npm run gulp copy-images
+npm run gulp copy-javascripts
+npm run gulp copy-third_party
+npm run gulp compile-sass
+npm run build-prod
+npm run gulp minify-javascripts
