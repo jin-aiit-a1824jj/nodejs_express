@@ -3,6 +3,7 @@ var del = require("del");
 var rename = require("gulp-rename");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
+var sass = require("gulp-sass");
 
 gulp.task("copy", (done)=>{
   gulp.src("./src/sample1.txt").pipe(gulp.dest("./dist"));
@@ -52,6 +53,22 @@ gulp.task("concat-minify-rename",(done)=>{
   done();
 });
 
+gulp.task("sass", (done)=>{
+  gulp.src("./src/*.scss")
+    .pipe(sass({ outputStyle: "expanded"}))
+    .pipe(gulp.dest("./dist"));
+  done();
+});
+
+gulp.task("sass-minify", (done)=>{
+  gulp.src(["sample1.scss", "sample2.scss"],{cwd: "./src"})
+    .pipe(concat("bundle.scss"))
+    .pipe(sass({ outputStyle: "compressed"}))
+    .pipe(rename({suffix: ".min"}))
+    .pipe(gulp.dest("./dist"));
+  done();
+});
+
 gulp.task("a", (done)=>{
   console.log("a");
   done();
@@ -62,7 +79,7 @@ gulp.task("b", (done)=>{
   done();
 });
 
-gulp.task("default", gulp.series("copy","delete","rename","concat", "minify", "concat-minify-rename", "a","b",(done)=>{
+gulp.task("default", gulp.series("copy","delete","rename","concat", "minify", "concat-minify-rename", "sass", "sass-minify", "a","b",(done)=>{
   console.log("default");
   done();
 }));
