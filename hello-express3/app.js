@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const app = express();
 
 app.all("/", (req, res) => {
@@ -24,6 +25,12 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(session({
+  secret: "qwerty",
+  resave: false,
+  saveUninitialized: true,
+  name: "sid"
+}));
 
 app.get("/postdata", (req, res)=>{
   res.render("./index.ejs");
@@ -48,6 +55,12 @@ app.get("/headerinfo", (req, res)=>{
 app.get("/cookieinfo", (req, res)=>{
   var count = parseInt(req.cookies.count || 0);
   res.cookie("count", count + 1);
+  res.render("./index-cookieinfo.ejs", {count});
+});
+
+app.get("/sessioninfo", (req, res)=>{
+  var count = req.session.count || 0;
+  req.session.count = count + 1;
   res.render("./index-cookieinfo.ejs", {count});
 });
 
