@@ -9,3 +9,32 @@ db.test.find()
 
 show collections
 db.products.find()
+
+use admin
+db.createUser({
+  user: "admin",
+  pwd: "password",
+  roles: [{role: "userAdminAnyDatabase", db: "admin"}]
+})
+db.system.users.find()
+
+
+***.cfg
+「
+security:
+  authorization: enabled
+」
+
+db.auth("admin", "password")
+show dbs
+
+use test
+db.createUser({
+  user: "dev1",
+  pwd: "password",
+  roles: [{role: "readWrite", db: "test"}]
+})
+exit
+
+mongo -u dev1 -p password -authenticationDatabase test
+db
