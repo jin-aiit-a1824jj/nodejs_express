@@ -1,0 +1,5 @@
+npm init
+npm install gulp --save-dev
+
+node ./node_modules/gulp/bin/gulp.js
+npm run gulp (* edit package.json [scripts])
