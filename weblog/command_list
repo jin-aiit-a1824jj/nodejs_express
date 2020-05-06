@@ -1,1 +1,5 @@
 npm init
+set NODE_ENV=DEBUG && node ./app.js
+
+npm install eslint --save-dev
+./node_modules/.bin/eslint --init
