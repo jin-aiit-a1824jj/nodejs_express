@@ -24,11 +24,16 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 app.get("/postdata", (req, res)=>{
-  res.render("./index.ejs")
+  res.render("./index.ejs");
 });
 
 app.post("/postdata", (req, res)=>{
   res.send("OK");
+});
+
+app.get("/queryinfo", (req, res)=>{
+  res.render("./index-queryinfo.ejs");
+  //console.log(req);
 });
 
 app.listen(3000);
