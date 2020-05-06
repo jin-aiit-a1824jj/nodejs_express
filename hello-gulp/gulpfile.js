@@ -2,6 +2,7 @@ var gulp = require("gulp");
 var del = require("del");
 var rename = require("gulp-rename");
 var concat = require("gulp-concat");
+var uglify = require("gulp-uglify");
 
 gulp.task("copy", (done)=>{
   gulp.src("./src/sample1.txt").pipe(gulp.dest("./dist"));
@@ -35,6 +36,22 @@ gulp.task("concat",(done)=>{
   done();
 });
 
+gulp.task("minify",(done)=>{
+  gulp.src("./src/source1.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("./dist"));
+  done();
+});
+
+gulp.task("concat-minify-rename",(done)=>{
+  gulp.src(["source1.js", "source2.js"],{ cwd: "./src"})
+    .pipe(concat("bundle.js"))
+    .pipe(uglify())
+    .pipe(rename({suffix: ".min"}))
+    .pipe(gulp.dest("./dist"));
+  done();
+});
+
 gulp.task("a", (done)=>{
   console.log("a");
   done();
@@ -45,7 +62,7 @@ gulp.task("b", (done)=>{
   done();
 });
 
-gulp.task("default", gulp.series("copy","delete","rename","concat","a","b",(done)=>{
+gulp.task("default", gulp.series("copy","delete","rename","concat", "minify", "concat-minify-rename", "a","b",(done)=>{
   console.log("default");
   done();
 }));

@@ -13,3 +13,5 @@ npm install del
 
 npm install gulp-rename
 npm install gulp-concat
+
+npm install gulp-uglify
