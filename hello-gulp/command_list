@@ -1,5 +1,15 @@
 npm init
 npm install gulp --save-dev
 
+npm install gulp
 node ./node_modules/gulp/bin/gulp.js
 npm run gulp (* edit package.json [scripts])
+
+https://qiita.com/tatsuo-iriyama/items/08ba4bd621b7fdedcc4e
+
+echo "Hello Gulp1" > sample1.txt
+echo "Hello Gulp2" > sample2.txt
+npm install del
+
+npm install gulp-rename
+npm install gulp-concat
