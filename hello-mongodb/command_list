@@ -71,3 +71,28 @@ db.dropUser("sato")
 db.getUsers()
 
 
+use sample
+db.getUsers()
+db.createUser({
+  user: "user",
+  pwd: "user",
+  roles: [{role: "readWrite", db: "sample"}]
+})
+db.getUsers()
+db.auth({user: "user", pwd: "user"})
+
+
+mongodump -u user -p user -d sample -o ./backup/yyyymmdd
+db.products.drop()
+db.products.find()
+mongorestore -u user -p user --authenticationDatabase sample --nsInclude sample.* --drop ./backup/yyyymmdd/
+show collections
+db.products.find()
+
+
+mongodump -u user -p user -d sample --gzip --archive=./backup/yyyymmdd.dump
+db.products.drop()
+db.products.find()
+mongorestore -u user -p user --authenticationDatabase sample --nsInclude sample --drop --gzip --archive=./backup/yyyymmdd.dump 
+show collections
+db.products.find()
