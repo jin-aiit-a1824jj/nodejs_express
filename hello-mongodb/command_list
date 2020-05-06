@@ -38,3 +38,36 @@ exit
 
 mongo -u dev1 -p password -authenticationDatabase test
 db
+
+
+
+use admin
+db.auth("admin", "password")
+use test
+db.createUser({
+  user: "sato",
+  pwd: "sato",
+  roles: [{role: "readWrite", db: "test"}]
+})
+db.getUsers()
+
+
+db.changeUserPassword("sato","password")
+exit
+mongo
+use test
+db.auth("sato", "password")
+exit
+
+use admin
+db.auth("admin", "password")
+use test
+db.grantRolesToUser("sato", ["userAdmin"])
+db.getUsers()
+db.revokeRolesFromUser("sato", ["userAdmin"])
+db.getUsers()
+
+db.dropUser("sato")
+db.getUsers()
+
+
