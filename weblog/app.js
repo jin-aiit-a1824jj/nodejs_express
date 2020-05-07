@@ -1,5 +1,5 @@
-var systemLogger = require("./lib/log/systemlogger");
-var accessLogger = require("./lib/log/accesslogger");
+var systemLogger = require("./lib/log/systemlogger.js");
+var accessLogger = require("./lib/log/accesslogger.js");
 var express = require("express");
 var app = express();
 
@@ -12,6 +12,7 @@ app.use(accessLogger());
 
 app.use("/", require("./routes/index.js"));
 app.use("/posts/", require("./routes/posts.js"));
+app.use("/search", require("./routes/search.js"));
 
 app.use(systemLogger());
 
