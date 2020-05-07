@@ -46,3 +46,8 @@ npm install body-parser --save
 
 
 npm run build-dev
+
+
+npm install csrf --save
+npm install express-session --save
+npm install cookie-parser --save
