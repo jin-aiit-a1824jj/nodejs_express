@@ -21,3 +21,16 @@ https://getbootstrap.com/docs/4.4/examples/starter-template/
 
 
 npm install log4js --save
+
+
+npm install mongodb --save
+sudo service mongod start
+mongo
+use weblog
+db.createUser({user: "user", pwd:"user", roles: [{role: "readWrite", db: "weblog"}]})
+db.auth("user", "user")
+node ./lib/database/insert-sample.js 
+show collections
+db.posts.find()
+db.privileges.find()
+db.users.find()
