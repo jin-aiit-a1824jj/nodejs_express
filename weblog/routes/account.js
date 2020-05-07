@@ -89,7 +89,7 @@ router.post("/posts/regist/execute", (req, res)=>{
     .then(()=>{
       delete req.session._csrf;
       res.clearCookie("_csrf");
-      res.render(__dirname + "/../views/account/posts/regist-complete.ejs");
+      res.redirect("/account/posts/regist/complete");
     }).catch((error)=>{
       throw error;
     }).then(()=>{
@@ -98,6 +98,10 @@ router.post("/posts/regist/execute", (req, res)=>{
   });
 
   
+});
+
+router.get("/posts/regist/complete", (req, res) => {
+  res.render(__dirname + "/../views/account/posts/regist-complete.ejs");
 });
 
 module.exports = router;
