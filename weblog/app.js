@@ -11,4 +11,11 @@ app.use("/", require("./routes/index.js"));
 
 app.use(systemLogger());
 
+//---
+//var logger = require("./lib/log/logger").application;
+// logger.addContext("key", "test");
+// logger.error("message");
+//logger.error("test", "message2");
+//---
+
 app.listen(3000);
