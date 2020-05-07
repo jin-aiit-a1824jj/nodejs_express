@@ -37,3 +37,6 @@ db.users.find()
 
 
 npm install ejs --save
+
+
+npm run build-dev
