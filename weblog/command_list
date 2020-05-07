@@ -18,3 +18,6 @@ npm run gulp minify-javascripts
 
 npm install express ejs --save
 https://getbootstrap.com/docs/4.4/examples/starter-template/
+
+
+npm install log4js --save
