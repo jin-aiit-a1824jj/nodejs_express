@@ -40,3 +40,6 @@ npm install ejs --save
 
 
 npm run build-dev
+
+
+npm install body-parser --save
