@@ -43,3 +43,6 @@ npm run build-dev
 
 
 npm install body-parser --save
+
+
+npm run build-dev
