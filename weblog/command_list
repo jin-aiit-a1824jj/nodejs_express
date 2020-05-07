@@ -34,3 +34,6 @@ show collections
 db.posts.find()
 db.privileges.find()
 db.users.find()
+
+
+npm install ejs --save
