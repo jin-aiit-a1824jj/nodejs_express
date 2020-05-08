@@ -54,3 +54,9 @@ npm install cookie-parser --save
 
 
 npm run build-dev
+
+
+npm install passport --save
+npm install passport-local --save
+npm install connect-flash --save
+

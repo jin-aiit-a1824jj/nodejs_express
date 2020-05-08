@@ -1,4 +1,5 @@
 var { CONNECTION_URL, OPTIONS, DATABASE } = require("../config/mongodb.config.js");
+var { authenticate } = require("../lib/security/accountcontrol.js")
 var MongoClient = require("mongodb").MongoClient;
 var router = require("express").Router();
 var tokens = new require("csrf")();
@@ -39,7 +40,13 @@ var validateRegistData = function(body){
   return isValidated? undefined : errors;
 }
 
-router.get("/", (req, res)=>{
+router.get("/", (req, res, next)=>{
+  if(req.isAuthenticated()){
+    next();
+  }else{
+    res.redirect("/account/login");
+  }
+},(req, res)=>{
   res.render(__dirname + "/../views/account/index.ejs");
 });
 
@@ -103,5 +110,11 @@ router.post("/posts/regist/execute", (req, res)=>{
 router.get("/posts/regist/complete", (req, res) => {
   res.render(__dirname + "/../views/account/posts/regist-complete.ejs");
 });
+
+router.get("/login", (req, res)=>{
+  res.render(__dirname + "/../views/account/login.ejs", {message: req.flash("message")});
+});
+
+router.post("/login", authenticate());
 
 module.exports = router;
