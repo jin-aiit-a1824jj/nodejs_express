@@ -60,3 +60,11 @@ npm install passport --save
 npm install passport-local --save
 npm install connect-flash --save
 
+
+mongo
+use weblog
+db.auth("user", "user")
+db.users.find()
+db.users.update({email: "yuta.sato@sample.com"}, {$set: {role: "default"}})
+db.users.find()
+db.users.update({email: "yuta.sato@sample.com"}, {$set: {role: "owner"}})
