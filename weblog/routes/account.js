@@ -117,4 +117,9 @@ router.get("/login", (req, res)=>{
 
 router.post("/login", authenticate());
 
+router.post("/logout", (req, res)=>{
+  req.logOut();
+  res.redirect("/account/login");
+});
+
 module.exports = router;

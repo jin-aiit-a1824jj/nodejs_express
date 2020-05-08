@@ -68,3 +68,6 @@ db.users.find()
 db.users.update({email: "yuta.sato@sample.com"}, {$set: {role: "default"}})
 db.users.find()
 db.users.update({email: "yuta.sato@sample.com"}, {$set: {role: "owner"}})
+
+
+https://getbootstrap.com/docs/4.4/examples/starter-template/
